@@ -6,7 +6,7 @@
 #         self.right = None
 
 class Solution(object):
-    def inorderTraversal(self, root):
+    def preorderTraversal(self, root):
         """
         :type root: TreeNode
         :rtype: List[int]
@@ -19,22 +19,16 @@ class Solution(object):
                     ret.append(node.val)
                 else:
                     stack.append((node.right, False))
-                    stack.append((node, True))
                     stack.append((node.left, False))
+                    stack.append((node, True))
         return ret
-
 #         res = []
-        
 #         self.helper(root,res)
-        
 #         return res
-    
-#     def helper(self,root,arr):
+
+#     def helper(self, root, res):
 #         if not root:
 #             return
-#         self.helper(root.left, arr)
-#         arr.append(root.val)
-#         self.helper(root.right,arr)
-       
-        
-        
+#         res.append(root.val)
+#         self.helper(root.left, res)
+#         self.helper(root.right, res)
