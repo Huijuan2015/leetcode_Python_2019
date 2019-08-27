@@ -23,5 +23,14 @@ class Solution(object):
         #     dummy.next = curr
         #     curr = tmp
         # return dummy.next
-            
+        
+        # curr->curr.next
+        # dummy->curr.next->curr->curr.next.next
+        # dummy->1
+        tmp = curr.next
+        curr.next = dummy.next
+        dummy.next = curr
+        curr = tmp
+
+\
           
