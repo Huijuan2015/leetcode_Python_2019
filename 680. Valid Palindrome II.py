@@ -4,6 +4,26 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
+        def isValid(s):
+            return s == s[::-1] #o(n)
+        
+        start = 0
+        end = len(s) - 1
+        
+        while start < end:
+            if s[start] != s[end]:
+                return isValid(s[start:end]) or isValid(s[start+1:end+1])
+            start += 1
+            end -= 1
+        return True
+
+
+class Solution(object):
+    def validPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
         count = 0 # count <= 1
         start  = 0
         end  = len(s)-1

@@ -41,6 +41,7 @@
 #        :rtype List[NestedInteger]
 #        """
 
+
 class Solution(object):
     def depthSum(self, nestedList):
         """
@@ -51,7 +52,7 @@ class Solution(object):
         
     def helper(self, nestedList, depth):
         cnt = 0
-
+当前层， 如果是数字，就加入计算，如果不是数字，就继续递归， 并且层数+1，最后的结果中加入整个部分
         while nestedList:
             tmp = nestedList.pop()
             if tmp.isInteger():
