@@ -40,6 +40,12 @@
 #        Return None if this NestedInteger holds a single integer
 #        :rtype List[NestedInteger]
 #        """
+[[1,1],2,[1,1]]
+用map来储存每一层有哪些，比如第一层[2] 第二层[[1,1], [1,1]]
+map: (
+      1:2;
+      2:2+2
+      )
 
 class Solution(object):
     def depthSumInverse(self, nestedList):
@@ -49,7 +55,7 @@ class Solution(object):
         """
         from collections import defaultdict
         ans = 0
-        self.mp = defaultdict(int)
+        self.mp = defaultdict(int) #用int 如果没有，默认返回0
         self.helper(nestedList, 1)
         depths = self.mp.keys()
         
