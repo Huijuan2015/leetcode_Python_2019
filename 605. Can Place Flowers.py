@@ -8,6 +8,7 @@ class Solution(object):
         
         flowerbed.insert(0, 0)
         flowerbed.append(0)
+        #flowerbed = [0]+flowerbed+[0]
         for i in range(1, len(flowerbed) - 1): # 0100 2
             if not flowerbed[i] and not flowerbed[i-1] and not flowerbed[i+1]:
                 n -= 1
