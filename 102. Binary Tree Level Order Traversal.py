@@ -11,18 +11,21 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[List[int]]
         """
+        # stack
         ret = []
-        level = [root]
-        while root and level:
-            currentNodes = []
+        level = [root] if root else []
+        
+        while level:
+            currNodes = []
             nextLevel = []
-            
+
             for node in level:
-                currentNodes.append(node.val)
+                currNodes.append(node.val)
                 if node.left:
                     nextLevel.append(node.left)
                 if node.right:
                     nextLevel.append(node.right)
-            ret.append(currentNodes)
+            ret.append(currNodes)
             level = nextLevel
         return ret
+        
