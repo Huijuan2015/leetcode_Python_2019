@@ -15,6 +15,7 @@ class Solution(object):
             dummy.next, head.next, head = head, dummy.next, head.next
         return dummy.next
         
+        头插
         # dummy = ListNode(0)
         # curr = head
         # while curr:
