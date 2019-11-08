@@ -34,3 +34,27 @@ class Solution(object):
 #         return dummy.next
         
        
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def swapPairs(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        dummy = tail = ListNode(0)
+        curr= head
+        
+        while curr and curr.next:
+            tmp = curr.next.next
+            tail.next = curr.next
+            curr.next .next = curr
+            curr.next = tmp
+            curr = tmp
+            tail = tail.next.next
+        tail.next = curr #剩一个
+        return dummy.next
