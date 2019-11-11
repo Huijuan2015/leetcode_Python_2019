@@ -300,6 +300,106 @@ def solution(str):
 # S = 'aaaabbbbccccdddeeeffggh'
 # print(minDeleteToUniqueFreq(S))
 
+Min Deletions To Obtain String in Right Format
+
+Notice we can partition the original string in half, deleting all B's in the left-side and all A's on the right side. 
+Therefore, the trick is to find a constant time computation of the number of Bs in the left partition, 
+and number of As in the right partition. Then we can iterate through all n + 1 partitions, sum the B's and A's, 
+and track the minimum deletions.
+
+For example take the string BAABAB, the partitions are as follows:
+
+| BAABAB -> BBB
+B | AABAB -> BB
+BA | ABAB -> ABB
+BAA | BAB -> AABB
+BAAB | AB -> AAB
+BAABA | B -> AAAB
+BAABAB | -> AAA
+
+Define f(i) = number of Bs up-to index i [exclusive]+ number As after index i [inclusive]
+This function is the number of deletion required to transform the string to A...AB...B where index i corresponds to 
+the partition before the first B.
+
+import collections
+
+class Solution:
+    def solution(self, s):
+        right = collections.Counter(s)
+        left = collections.Counter()
+        ans = left['B'] + right['A']
+        for c in s:
+            left[c] += 1
+            right[c] -= 1
+            ans = min(ans, left['B'] + right['A'])
+        return ans
+
+s = Solution()
+assert s.solution("BAAABAB") == 2
+assert s.solution("BBABAA") == 3
+assert s.solution("B") == 0
+assert s.solution("BAAABBBB") == 1
+assert s.solution("BBBBABBB") == 1
+assert s.solution("AAAAA") == 0
+
+Unique Integers That Sum Up To 0
+start with 0 if an odd number,
+then just concat [i, i*-1] n/2 times.
+
+n = 2 -> [1,-1]
+n = 3 -> [0, 1, -1]
+n = 4 -> [1, -1, 2, -2] etc...
+
+
+def sum_to_zero(n):
+    if n % 2 == 0:
+        res = []
+    else:
+        res = [0]
+        n -= 1
+    for i in range(int(n/2) + 1):
+        if i > 0:
+            res.append(i)
+            res.append(i * -1)
+          
+    return res
+
+
+Largest Integer
+Sorting + Two Pointers O(nlogn)
+Array: [3,2,-2,5,-3]
+After Sorting:[-3,-2,2,3,5]
+Keep two pointers on the 0th and the last position respectively,
+while(left<right) // To avoid zeros case
+1)if the absolute values match, return the value
+2) right--, if right's absolute value is greater than left's value
+3)left++, if left's absolute value is greater than right's value
+
+Extra Space O(n)
+Use an Array/HashMap to keep the occurences of the element, save the absolute value in the array/hashmap. whenever you already have your absolute value in the map, compare it with the ans variable and take the maximum out of the two.
+def largestint(arr):
+    map = set()
+    largest = 0
+    for num in arr:
+        if -1 * num in map:
+            pos = num if num > 0 else num * -1
+            if pos > largest:
+                largest = pos
+        else:
+            map.add(num)
+    return largest
+def largestint(arr):
+    map = set()
+    largest = 0
+    for num in arr:
+        if -1 * num in map:
+            pos = num if num > 0 else num * -1
+            if pos > largest:
+                largest = pos
+        else:
+            map.add(num)
+    return largest
+
 String Without 3 Identical Consecutive Letters
 from itertools import groupby
 def stringWithout3Identical(S):
@@ -428,6 +528,26 @@ S = 'baaaa'
 print(maxInserts(S))
 
 
+Jump Game
+def jumpGame(self, nums, ):
+    nums = [3,4,2,3,10,3,1,2,1]
+    mp = {}
+    print self.dfs(nums, 0, mp)
+
+    def dfs(self, nums, idx, mp): # if can jump
+        if nums[idx] == 0:
+            return True
+        if idx in mp:
+            return mp[idx]
+        mp[idx] = False
+        if idx-nums[idx]>0:
+            if(self.dfs(nums, idx-nums[idx], mp)):
+                return True
+        if idx + nums[idx] < len(nums):
+            if self.dfs(nums, idx+nums[idx], mp):
+                return True
+        return False    
+
 
 
 Max Network Rank
@@ -442,21 +562,147 @@ print(maxNetworkRank(A, B))
 
 
 
+2
+    给你一个sorted array， 和一个integer n表示numbers of buckets，
+   写一个function把这个sorted array 分解成n个sub array，
+   使得每个sub array 的总和（weights） 差不多相同。 （approximately equals）
+EX: [1,2,3,4,5], result = [[5], [4,1],[3,2]]    有点像咬零药药，不过做法肯定不一样。
+
+因为对这个approximately equals拿不准。新建一个class，里面两个property, sum 和 list<int>。基于这个class建立一个priority queue，
+排序的顺序就是sum的大小。从大到小遍历那个数组，如果pq.Count() < n就根据当前数字新建一个class加进去，否则就把当前数字加到pq的最小的里面。
+我不知道该怎么证明，但自己试了几个test case，好像都对...
+class Solution(object):
+    def canPartitionKSubsets(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        sums = [0]*k
+        subsum = sum(nums) / k
+        nums.sort(reverse=True)
+        l = len(nums)
+        
+        def walk(i):
+            if i == l:
+                return len(set(sums)) == 1
+            for j in xrange(k):
+                sums[j] += nums[i]
+                if sums[j] <= subsum and walk(i+1):
+                    return True
+                sums[j] -= nums[i]
+                if sums[j] == 0:
+                    break
+            return False        
+        
+        return walk(0)
+
+
+
+4.给定两个整数A和B，求A在B里的第一个occurrence。如A = 13， B = 51367，答案就是1
 
 
 
 
 
 
+"""
+To invert the bits of a number, requires:
+1) get the bits of the number
+2) invert the numer:
+    to efficiently invert bits is to use XOR with a all 1 bits number
+Time complexity:O(lgn)
+Space complexity:O(1)
+"""
+import math
+
+def invertBits(n):
+    # calculate number of bits in the given number
+    x = int(math.log(n,2))
+    # generate a number with x bits and all bits set, which is 1111...(x times)
+    m = 1 << x
+    m = m | m-1
+    # calculate the bit-wise XOR of M with n
+    n = n ^ m
+    return n
 
 
 
+"""
+Use topology sort
+1) iterate the dependecy relationships to construct a map with childrens as its values
+2) use a queue to store nodes with no parents dependecy
+time: O(n)
+space: O(n)
+"""
+import defaultdict from collections
+import deque
+
+def sort(tasks, depends):
+    # dependecy map: task: its dependency
+    relationMap = defaultdict(set)
+    # dependency count map:  taks: dependecy count
+    dependencyCount = defaultdict(int)
+
+    for depend in depends:
+        parts = depend.split('<-')
+        dependencies = parts[1].split(',')
+        
+        for denpendency in denpendencies:
+            relationMap[dependency].add(parts[0])
+            if denpendency not in dependencyCount:
+                dependencyCount[denpendency] = 0
+        dependencyCount[parts[0]] += len(dependencies)
+    
+    q = deque()
+    for k in dependencyCount.keys():
+        if dependencyCount[k] == 0:
+            q.append(k)
+
+    res = [_ for _ in len(tasks)]
+    i = 0
+    while q:
+        cur = q.popleft()
+        res[i] = curr
+        if cur in relationMap:
+            connections = relationMap[cur]
+            for connect in connections:
+                dependencyCount[connect] -= 1
+                if dependencyCount[connect] == 0:
+                    q.append(connect)
+        i += 1
+   
+    return res
 
 
 
-
-
-
+"""
+to get approximately equal weights of n buckets:
+1) get a most possible number for all subsets to reach, ex. use average: (all number sum)/n
+2) go through the array to find all the possible sets
+Time:O(nlogn)  because of the sort
+Space: O(k) k : n buckets
+"""
+def groupArray(self, nums, n):
+    sums = [0 for _ in range(n)]
+    subsum = sum(nums)/n
+    nums.sort(reverse == True)
+    l = len(nums)
+    
+    def canGroup(i):
+        if i == 1:
+            return len(set(sums)) == 1
+        for j in xrange(n):
+            sums[j] += nums[i]
+            if sums[j] <= subsum and canGroup(i+1):
+                return True
+            sums[j] -= nums[i]
+            if sums[j] == 0:
+                break
+        return False
+    
+    return self.canGroup(0)
+    
 
 
 
