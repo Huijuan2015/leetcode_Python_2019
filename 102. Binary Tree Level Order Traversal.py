@@ -4,7 +4,7 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
-
+Time: O(N) | Space: O(size of return array + size of queue) -> Worst Case O(2N)
 class Solution(object):
     def levelOrder(self, root):
         """

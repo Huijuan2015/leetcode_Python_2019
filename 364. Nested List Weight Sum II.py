@@ -41,7 +41,7 @@
 #        :rtype List[NestedInteger]
 #        """
 [[1,1],2,[1,1]]
-用map来储存每一层有哪些，比如第一层[2] 第二层[[1,1], [1,1]]
+用map来储存每一层sum，比如第一层[2] ,存1：2； 第二层 [1,1], [1,1] 存2：4
 map: (
       1:2;
       2:2+2
@@ -75,4 +75,24 @@ class Solution(object):
                 self.mp[depth] += list.getInteger()
             else:
                 self.helper(list.getList(), depth + 1)
+
+BFS
+class Solution(object):
+    def depthSumInverse(self, nestedList):
+        """
+        :type nestedList: List[NestedInteger]
+        :rtype: int
+        """
+        total_sum, level_sum = 0, 0
+        while len(nestedList):
+            next_level_list = []
+            for x in nestedList:
+                if x.isInteger():
+                    level_sum += x.getInteger()
+                else:
+                    for y in x.getList():
+                        next_level_list.append(y)
+            total_sum += level_sum
+            nestedList = next_level_list
+        return total_sum
             
