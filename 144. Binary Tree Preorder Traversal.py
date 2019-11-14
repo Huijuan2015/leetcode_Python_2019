@@ -11,6 +11,7 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[int]
         """
+        
         ret, stack = [], [(root, False)]
         while stack:
             node, visited = stack.pop()
@@ -22,6 +23,20 @@ class Solution(object):
                     stack.append((node.left, False))
                     stack.append((node, True))
         return ret
+
+        #iteratively / stack
+        if not root:
+            return []
+        stk = [root]
+        res = []
+        while stk:
+            curr = stk.pop()
+            if curr:
+                res.append(curr.val)
+                stk.append(curr.right)
+                stk.append(curr.left)
+
+
 #         res = []
 #         self.helper(root,res)
 #         return res

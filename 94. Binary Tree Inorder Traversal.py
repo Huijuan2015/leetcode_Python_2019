@@ -11,16 +11,34 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[int]
         """
+        #iterative
+        if not root:
+            return []
+        res = []
+        stk = []
+        
+        while stk or root:
+            if root:
+                stk.append(root)
+                root = root.left
+            else:
+                node = stk.pop()
+                res.append(node.val)
+                root = node.right
+        return res
+
+
+        //////// with flag ---BEST!
         ret, stack = [], [(root, False)]
         while stack:
             node, visited = stack.pop()
             if node:
                 if visited:
                     ret.append(node.val)
-                else:
-                    stack.append((node.right, False))
-                    stack.append((node, True))
-                    stack.append((node.left, False))
+                    continue
+                stack.append((node.right, False))
+                stack.append((node, True))
+                stack.append((node.left, False))
         return ret
 
 #         res = []

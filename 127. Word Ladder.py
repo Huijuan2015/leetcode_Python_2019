@@ -11,7 +11,7 @@ class Solution(object):
         if endWord not in wordList:
             return 0
         alphabets = "abcdefghijklmnopqrstuvwxyz" #string.ascii_lowercase
-        curr = {beginWord}
+        curr = {beginWord} #set是dict 类型
         
         dist = 1
         while curr:
