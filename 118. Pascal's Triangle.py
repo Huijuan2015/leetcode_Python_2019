@@ -27,3 +27,30 @@ class Solution(object):
 #         l1.append(res)
 #         return l1
         
+
+class Solution(object):
+    
+    def generate(self, numRows):
+        """
+        :type numRows: int
+        :rtype: List[List[int]]
+        """
+        self.res = []
+        if numRows == 0:
+            return
+        self.generate1(numRows)
+        return self.res
+        
+    def generate1(self, numRows):
+        if numRows == 1:
+            self.res.append([1])
+            return [1]
+        curr= [_ for _ in range(numRows)]
+        last = self.generate1(numRows-1)
+        curr[0], curr[-1] = 1, 1
+        for i in range(1,numRows-1):
+            curr[i] = last[i-1]+last[i]
+        self.res.append(curr)
+        return curr
+         
+        

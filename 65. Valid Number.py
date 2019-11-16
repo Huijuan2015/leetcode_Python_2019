@@ -4,6 +4,42 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
+        s = s.strip()
+        numSeen, dotSeen, eSeen, numAfterE = False, False, False, True
+        for i, ch in enumerate(s):
+            # print ch
+            if ch in "0123456789":
+                numSeen = True
+                numAfterE = True #!!
+            elif ch == '.':
+                if dotSeen or eSeen:
+                    return False
+                dotSeen = True
+            elif ch =='e':
+                if eSeen or not numSeen:
+                    return False
+                eSeen = True
+                numAfterE = False
+            elif ch == '+' or ch == '-':
+                if i != 0 and s[i-1] != 'e':#+- 不在第一位或者e后面
+                    return False
+            else:
+                return False
+        return numSeen and numAfterE
+
+
+
+
+
+
+
+
+class Solution(object):
+    def isNumber(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
         
 #          Deterministic finite automaton DFA 过滤敏感字
 # https://blog.csdn.net/BuptZhengChaoJie/article/details/70332444

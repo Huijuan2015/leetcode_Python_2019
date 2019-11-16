@@ -14,3 +14,5 @@ class Solution(object):
             return half * half
         else:
             return half * half * x
+
+            https://leetcode.com/problems/powx-n/discuss/19544/5-different-choices-when-talk-with-interviewers

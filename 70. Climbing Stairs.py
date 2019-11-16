@@ -20,3 +20,31 @@ class Solution(object):
         for _ in range(2, n):
             a, b = b, a+b
         return b
+
+
+
+//memoization
+class Solution(object):s
+    d = {}
+    d[1] = 1
+    d[2] = 2
+    def climbStairs(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n <= 2:
+            return n
+        # d = [_ for _ in range(n+1)]
+        # d[:3] = [0,1,2]
+        
+        # print d
+#         for i in range(3, n+1):
+            
+#             d[i] = d[i-1] + d[i-2]
+#         return d[n]
+        
+        if n in self.d:
+            return self.d[n]
+        self.d[n] = self.climbStairs(n-1) + self.climbStairs(n-2)
+        return self.d[n]

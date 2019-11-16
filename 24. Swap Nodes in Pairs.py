@@ -48,7 +48,7 @@ class Solution(object):
         """
         dummy = tail = ListNode(0)
         curr= head
-        
+        要记住一个tail
         while curr and curr.next:
             tmp = curr.next.next
             tail.next = curr.next
@@ -58,3 +58,28 @@ class Solution(object):
             tail = tail.next.next
         tail.next = curr #剩一个
         return dummy.next
+
+
+
+Recursively
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def swapPairs(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        先swap前两个，然后不断递归
+        if not head or not head.next:
+            return head
+        nextHead = head.next.next
+        #head, head.next = head.next, head
+        head.next.next = head
+        head = head.next
+        head.next.next = self.swapPairs(nextHead)
+        return head
