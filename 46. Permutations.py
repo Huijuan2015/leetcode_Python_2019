@@ -18,3 +18,6 @@ class Solution(object):
             visited[idx] = True
             self.helper(nums, visited, path+[nums[idx]])
             visited[idx] = False
+
+
+            就是一个线程负责某个数字开头的permutation

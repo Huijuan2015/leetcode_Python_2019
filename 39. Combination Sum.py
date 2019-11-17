@@ -1,3 +1,9 @@
+"followup: negative numbers  
+the length of the combination sum needs to be restricted, or the search will not stop
+Map<Integer,Map<Integer,Integer>> targetToLengthToCount
+helper(int[] nums, int len, int target, int MaxLen)"
+
+
 class Solution(object):
     def combinationSum(self, candidates, target):
         """

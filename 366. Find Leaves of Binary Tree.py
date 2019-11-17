@@ -31,21 +31,36 @@ class Solution(object):
         return res
 
 without dict
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def findLeaves(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        #use level
         self.leaves = []
-        
-        def getLevel(root, leaves):
-            if not root:
-                return 0
-            
-            l = getLevel(root.left, leaves)
-            r = getLevel(root.right, leaves)
-            level = max(l, r) + 1 # root level
-            if level > len(leaves):
-                leaves.append([])
-            leaves[level-1].append(root.val)
-            return level
-        getLevel(root, self.leaves)
+        self.getLevel(root)
         return self.leaves
+    
+    def getLevel(self, root): 
+        if not root:
+            return 0
+        
+        l = self.getLevel(root.left)
+        r = self.getLevel(root.right)
+        level = max(l,r) + 1
+        if level > len(self.leaves):
+            self.leaves.append([])
+        self.leaves[level-1].append(root.val)
+        return level
+        
 
 # Definition for a binary tree node.
 # class TreeNode(object):

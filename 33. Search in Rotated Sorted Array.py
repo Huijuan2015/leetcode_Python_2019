@@ -31,3 +31,6 @@ class Solution(object):
                 else:
                     end = mid-1
         return -1
+
+
+        多次读取的问题用index map，只在初始化的时候读一次后面都refer map。数据量大就用分布式处理比如map reduce。
