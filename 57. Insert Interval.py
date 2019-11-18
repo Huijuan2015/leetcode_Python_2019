@@ -30,14 +30,14 @@ class Solution(object):
         for i, interval in enumerate(intervals):
             # print interval, start, end
             if interval[1] < start:#完全在当前元素后
-                res.append(interval)
+                res.append(interval) 更新覆盖长度 interval[1]-interval[0]+1
             elif end < interval[0]:#完全在当前元素前
-                res.append(newInterval)
+                res.append(newInterval) 更新覆盖长度 newInterval[1]-newInterval[0]+1
                 return res+intervals[i:]
             else: #一部分在当前内，一直更新可以插入的最大区间，不更新res
                 start = min(start, interval[0])
                 end = max(end, interval[1])
                 newInterval = [start, end]
             # print res, start, end
-        res.append(newInterval)            
+        res.append(newInterval)   更新覆盖长度 newInterval[1]-newInterval[0]+1      
         return res

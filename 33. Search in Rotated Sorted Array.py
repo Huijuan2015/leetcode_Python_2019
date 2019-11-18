@@ -20,7 +20,7 @@ class Solution(object):
             # mid < start
                 # mid<target<end
                 # else
-            if nums[mid] >= nums[start]:
+            if nums[mid] >= nums[start]: # 当只有2个元素的时候，start=mid =1,所以要等于
                 if target < nums[mid] and target >= nums[start]:
                     end = mid - 1
                 else:
