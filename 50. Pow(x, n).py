@@ -1,3 +1,5 @@
+Time/Space: log(n)
+
 class Solution(object):
     def myPow(self, x, n):
         """

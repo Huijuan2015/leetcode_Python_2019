@@ -1,8 +1,6 @@
 Linkedin Phone
-Event bubbling
-Prototype vs. class
-Accessibility
-Callback vs. promise
+
+
 
 1. write a program to list factors of a given number
 e.g. for 12, factors are 1, 2., 3, 4, 6, 12
@@ -59,15 +57,45 @@ Synchronized
  heap vs stack process vs thread
 
 
+# system infra Phone Q:
+
+# system related
+1. Process vs Thread
+2. Stack vs Heap (Memory)
+3. TCP vs UDP
+4. Transaction (ACID)
+5. Virtuaop0l memory (paging, page fault)
+6. write-back cache vs write-through cache
+
+# java related
+1. final/finally/finalize differences
+2. checked exception vs unchecked exception
+3. Nested class (static vs non-static), how to instantiate
+4. Java HashMap (原理，实现，线程安全)
+5. Java Objects(Abstraction, Polymorphism, Inheritance, Encapsulation)
+mutex vs semaphore
+1. different between process and thread
+2. Java - different between final, finally, finalized
 
 
 
+5. Asked to implement the below interfaces for Bounded Blocking Queue with multiput.
+
+public interface BoundedBlockingQueue<T> {
+
+   public void init(int capacity) throws Exception; 
+
+   public void push(E obj) throws Exception; 
+
+   public T pop() throws Exception;
+
+   public void multiput(List<T> objs) throws Exception; 
+}
+
+6.记具体题目了应该和二拜差不多，也是可以用bfs/dfs/union find做的题目。两个排序好的链表求并集/交集，follow up常数空间（应该是，有点忘记了），follow up大数据map reduce具体怎么做
 
 
-
-
-
-
+虚拟内存，进程和线程
 
 
 
