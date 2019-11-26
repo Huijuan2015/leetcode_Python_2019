@@ -6,7 +6,7 @@ class Solution(object):
         :rtype: int
         """
         l1, l2 = len(word1), len(word2)
-        dp = [[_ for _ in range(l2+1)] for _ in range(l1+1)]
+        dp = [[_ for _ in range(l2+1)] for _ in range(l1+1)] edit 到i，j 长度的effort
         dp[0][0] = 0          
         for i in range(1, l1+1):
             dp[i][0] = i

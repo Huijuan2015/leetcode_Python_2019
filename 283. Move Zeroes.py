@@ -4,13 +4,11 @@ class Solution(object):
         :type nums: List[int]
         :rtype: None Do not return anything, modify nums in-place instead.
         """
-        first = 0
-        second = 0
-        
+        first, second = 0, 0
         while second < len(nums):
-            if nums[second] !=0:
+            if nums[second] != 0: # curr 不等于0， first往前走
                 nums[first], nums[second] = nums[second], nums[first]
-                first += 1
+                first += 1 #first一直在第一个0上
             second += 1
+                
             
-        
