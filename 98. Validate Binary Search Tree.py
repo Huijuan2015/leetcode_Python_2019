@@ -1,3 +1,26 @@
+second time, same
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def isValidBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        return self.helper(root, float('-inf'), float('inf'))
+    def helper(self, root, low, high):
+        if not root:
+            return True
+        if root.val <= low or root.val >= high:
+            return False
+        return self.helper(root.left, low, root.val) and self.helper(root.right, root.val, high)
+
+
 # Definition for a binary tree node.
 # class TreeNode(object):
 #     def __init__(self, x):
@@ -21,3 +44,5 @@ class Solution(object):
         
         return self.helper(root.left, lower_bound, root.val) and self.helper(root.right, root.val, upper_bound)
     
+
+

@@ -5,18 +5,19 @@ class Solution(object):
         :rtype: bool
         """
 
-        # (node, 1/-1)
-        
+        # (node, 1/0)
+        # -1：未被染色， 需要将node及其children染成1/0间隔色
         colors = {i:-1 for i in range(len(graph))} # node: -1表示未visit过， 要染成0/1
         for i in range(len(graph)):
-            if colors[i] == -1 and not self.isValid(graph, colors, 0 , i): #0?
+            #当node未被染色时，要为这个node及其children染色，并判断是否valid
+            if colors[i] == -1 and not self.isValid(graph, colors, 0 , i): 
                 return False
         return True
      #dfs          
     def isValid(self, graph, colors, color, node):#with node, if color works
-        if colors[node] != -1: #被染过色
+        if colors[node] != -1: #如果被染过色，直接判断颜色是否是预期color
             return colors[node] == color # 
-        colors[node] = color #染色
+        colors[node] = color #如果未染色，则染成期望color再继续dfs孩子
         for n in graph[node]:
             if not self.isValid(graph, colors, 1-color, n):
                 return False
