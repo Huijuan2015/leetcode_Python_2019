@@ -4,7 +4,9 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        
+        # currSum, sum
+        #  currSum+i ?  加上当前数比当前数大，则加上当前数； 加上当前数比不上当前数，只要当前数
+        # update sum
         ret = nums[0]
         curr = ret
         # if not nums:
