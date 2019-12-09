@@ -12,24 +12,28 @@ class Solution(object):
         :type root: TreeNode
         :rtype: None Do not return anything, modify root in-place instead.
         """
-        # preorder
-        res = self.helper(root)
-        return res[0]
-    
-    def helper(self, root): # return root and tail
+        return self.helper(root)[0]
+    def helper(self, root): #leftmost, rightmost
         if not root:
             return [None, None]
-
-        lh, lt = self.helper(root.left)
-        rh, rt = self.helper(root.right)
         res = [root, root]
-        root.left = None
-        if lh:
-            root.right = lh
-            lt.right = rh
-            res[1] = lt
-        if rt:
-            res[1] = rt
+        left = self.helper(root.left)
+        right = self.helper(root.right)
+        在左右存在的时候考虑链接，并更新最左，最右
+        if left[0]: 
+            root.right = left[0]
+            root.left = None
+            res[1] = left[1]
+        if right[0]:
+            if left[1]:
+                left[1].right = right[0]
+            else:
+                root.right = right[0]
+            res[1] = right[1]
+        return res
+
+        
+        # right_left, right_right = self.helper(root.right)
         return res
 
 iterative

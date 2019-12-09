@@ -11,6 +11,38 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[List[int]]
         """
+        if not root:
+            return 
+        mp = collections.defaultdict(list)
+        q = collections.deque()
+        q.append((root, 0))
+        res = []
+        
+        while q:
+            node, depth = q.popleft()
+            mp[depth].append(node.val)
+            if node.left:
+                q.append((node.left, depth-1))
+            if node.right:
+                q.append((node.right, depth+1))
+        for k in sorted(mp.keys()):
+            res.append(mp[k])
+        return res
+
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def verticalOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
         from collections import defaultdict
         self.mp = defaultdict(list)
         self.leftmost, self.rightmost = 0, 0
