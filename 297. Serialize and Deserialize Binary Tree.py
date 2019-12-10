@@ -33,20 +33,20 @@ class Codec:
         """
         # queue
         from collections import deque
-        self.queue = deque(data.split(","))
-        print self.queue
-        root = self.dfs(self.queue)
+        queue = deque(data.split(","))
+        # print self.queue
+        root = self.dfs(queue)
         return root
     
     def dfs(self, queue): # 返回node
         if not queue:
             return
-        curr = self.queue.popleft()
+        curr = queue.popleft()
         if curr == '#':
             return
         node = TreeNode(curr)
-        node.left = self.dfs(self.queue)
-        node.right = self.dfs(self.queue)
+        node.left = self.dfs(queue)
+        node.right = self.dfs(queue)
         return node
 
 

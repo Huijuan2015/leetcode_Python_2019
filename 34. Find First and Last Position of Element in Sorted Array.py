@@ -12,7 +12,7 @@ class Solution(object):
         if not nums:
             return res
         # first round, find beginning
-        while start < end:
+        while start < end: #不能等于，如果等于， 会stuck
             mid = (start+end) >> 1
             
             if nums[mid] < target:

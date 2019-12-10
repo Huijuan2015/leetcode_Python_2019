@@ -5,6 +5,25 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
+        import collections
+        mp = collections.defaultdict(int) #sum:same sum count
+        sum = 0
+        cnt = 0
+        mp[0] = 1
+        for i in range(len(nums)):
+            sum += nums[i]
+            if sum-k in mp:
+                cnt += mp[sum-k]
+            mp[sum] += 1
+        return cnt
+
+class Solution(object):
+    def subarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
         from collections import defaultdict
         if not nums:
             return 0

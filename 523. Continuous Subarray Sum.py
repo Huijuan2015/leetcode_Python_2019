@@ -9,7 +9,7 @@ class Solution(object):
         mp = {} #余数：idx
         sum = [0 for _ in range(len(nums))]
         sumUp = 0
-        mp[0] = -1#? 如果余数 or sum是0？
+        mp[0] = -1#? 要初始化加一个最开始的sum，以防止结果是从idx0开始的片段， ex [0,0] find 0
         
         for i in range(len(nums)):
             sumUp += nums[i]
