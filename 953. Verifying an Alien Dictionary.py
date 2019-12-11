@@ -31,7 +31,12 @@ class Solution(object):
             prev = words[i]
         return True
     
-         
+Hash indexes of each character for better runtime
+Compare every adjacent word
+If any letter of former word is in higher order, return False
+If current letter of former word is in lower order, forget the rest of word
+If lenght of former word is longer and latter word is substring of former, return False (apple & app etc.)
+Return True        
 class Solution:
     def isAlienSorted(self, words, order):
         ind = {c: i for i, c in enumerate(order)}
