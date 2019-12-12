@@ -12,6 +12,7 @@ class Solution(object):
         wordDict = set(wordDict)
         dp[0] = True
         for i in range(n): #s[i] , dp[i+1]
+        要判断当前是不是有效位， 就去scan去前面所有有效位，看是有会有效
             for j in range(i+1): #dp坐标 ， 可以另外定义一个array 只存结果为true的值
                 if dp[j]:# True
                     tmp = s[j:i+1]

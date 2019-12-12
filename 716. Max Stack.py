@@ -1,3 +1,7 @@
+2 stack
+当前最大值
+
+
 class MaxStack(object):
 
     def __init__(self):

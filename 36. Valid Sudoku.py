@@ -4,7 +4,8 @@ class Solution(object):
         :type board: List[List[str]]
         :rtype: bool
         """
-        row = [[False for i in range(9)] for j in range(9)]
+        #3个used 9*9 matrix
+        row = [[False for i in range(9)] for j in range(9)]# 第n行，每行1~9是否被用过
         col = [[False for i in range(9)] for j in range(9)]
         block = [[False for i in range(9)] for j in range(9)]
         for i in range(9):
