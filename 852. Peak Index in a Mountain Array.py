@@ -4,6 +4,33 @@ class Solution(object):
         :type A: List[int]
         :rtype: int
         """
+        for i in range(1,len(A)-1):
+            if A[i] > A[i-1] and A[i] > A[i+1]:
+                return i
+
+binary search           
+class Solution(object):
+    def peakIndexInMountainArray(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        start, end = 0, len(A)-1
+        while start < end:
+            mid = (start+end)/2
+            if A[mid] < A[mid+1]:
+                start = mid+1
+            else:
+                end = mid
+        return start
+            
+
+class Solution(object):
+    def peakIndexInMountainArray(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
         low = 0
         high = len(A) - 1
         while(low <= high):

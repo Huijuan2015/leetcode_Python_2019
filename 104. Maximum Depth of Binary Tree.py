@@ -13,13 +13,9 @@ class Solution(object):
         """
         if not root:
             return 0
-        depth = 0
-        return 1 + max(self.helper(root.right, depth), self.helper(root.left, depth))
-    
-    def helper(self, root, depth):
-        if not root:
-            return depth
-        return max( self.helper(root.right, depth + 1), self.helper(root.left, depth+1))
+        l = self.maxDepth(root.left)+1
+        r = self.maxDepth(root.right)+1
+        return max(l, r)
 
 
 

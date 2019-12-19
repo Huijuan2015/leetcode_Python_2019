@@ -1,3 +1,21 @@
+class Solution(object):
+    def depthSum(self, nestedList):
+        """
+        :type nestedList: List[NestedInteger]
+        :rtype: int
+        """
+        self.res = 0
+        self.helper(nestedList, 1)
+        return self.res
+    
+    def helper(self, nestedList, depth):
+        newList = []
+        for l in nestedList:
+            if l.isInteger():
+                self.res += l.getInteger()*depth
+            else:
+                self.helper(l.getList(), depth+1)
+
 # """
 # This is the interface that allows for creating nested lists.
 # You should not implement it, or speculate about its implementation
