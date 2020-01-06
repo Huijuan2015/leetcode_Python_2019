@@ -16,12 +16,12 @@ class Solution(object):
             first = 0
             second = third-1
             while first < second:
+                if nums[second] == 0:
+                    break 
                 if nums[first] == 0:
                     first += 1
                     continue
-                if nums[second] == 0:
-                    second -= 1
-                    continue   
+                 
                 if nums[first] + nums[second] <= nums[third]:
                     first+=1
                 else:

@@ -5,6 +5,7 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
+        前缀和相减
         import collections
         mp = collections.defaultdict(int) #sum:same sum count
         sum = 0
