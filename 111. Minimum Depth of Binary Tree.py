@@ -11,6 +11,26 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
+        if not root:
+            return 0
+        l = self.minDepth(root.left)
+        r = self.minDepth(root.right)
+        depth  = min(l, r) if l >0 and r > 0 else l if l else r
+        return depth+1
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def minDepth(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
         return self.depth(root)
     
     def depth(self, root):
