@@ -33,7 +33,7 @@ class RandomizedSet(object):
             self.nums[-1], self.nums[idx] = self.nums[idx], self.nums[-1]
             self.d[lastNum] = idx
             self.nums.pop() # pop last item, O(1)
-            self.d.pop(val)
+            self.d.pop(val) 如果最后一个就是要pop的数，所以pop(val)放最后
             return True
         return False
 
