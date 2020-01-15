@@ -16,8 +16,8 @@ class Solution(object):
         while right < len(s) or cnt == 0:
             #print left, right, cnt
             if cnt == 0:
-                if minLen > right-left+1:
-                    minLen = right-left+1
+                if minLen > right-left:
+                    minLen = right-left
                     res = s[left:right]
                 #print s[left], mp[s[left]], left, right, cnt
                 if mp[s[left]] >= 0:
