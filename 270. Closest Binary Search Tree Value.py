@@ -6,6 +6,39 @@
 #         self.right = None
 
 class Solution(object):
+    def closestValue(self, root, target):
+        """
+        :type root: TreeNode
+        :type target: float
+        :rtype: int
+        """
+        if not root:
+            return
+        q = collections.deque()
+        minDist = float('inf')
+        res = None
+        q.append((root, abs(root.val-target)))
+        
+        while q:
+            node, dist = q.popleft()
+            if minDist > dist:
+                minDist = dist
+                res  = node.val
+            if node.left and target < node.val:
+                q.append((node.left, abs(node.left.val-target)))
+            if node.right and target > node.val:
+                q.append((node.right, abs(node.right.val-target)))
+        return res
+    
+        
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
     node = TreeNode(None)
     min = float('inf')
     def closestValue(self, root, target):
