@@ -4,6 +4,43 @@ class Solution(object):
         :type nums: List[int]
         :rtype: None Do not return anything, modify nums in-place instead.
         """
+        # from end: find the first decreasing number a[i-1]
+        # from i-1 find the number j just bigger than a[i-1]
+        # swap a[i-1], a[j]
+        # reverse a[i:]
+        
+        i = len(nums)-1
+        while i > 0:
+            if nums[i-1] < nums[i]:
+                break
+            i -= 1
+        if i == 0:#整个数组是降序的
+            return nums.sort()    
+        j = i
+
+        while j < len(nums):
+            if nums[j] <= nums[i-1]:
+                break
+            j += 1
+        j -= 1
+        nums[i-1], nums[j] = nums[j], nums[i-1]
+
+        j = len(nums)-1
+        while i < j:
+            nums[i], nums[j] = nums[j], nums[i]
+            i += 1
+            j -= 1
+        return nums
+                    
+
+                
+
+class Solution(object):
+    def nextPermutation(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
         k = -1
         for i in range(len(nums)-2, -1, -1):
             if nums[i] < nums[i+1]:
