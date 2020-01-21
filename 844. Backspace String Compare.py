@@ -5,6 +5,27 @@ class Solution(object):
         :type T: str
         :rtype: bool
         """
+        def skip(s):
+            skip = 0
+            for i in range(len(s)-1, -1, -1):
+                if s[i] == '#':
+                    skip += 1
+                    s = s[:i] + s[i+1:]
+                elif skip > 0:
+                    skip -= 1
+                    s = s[:i]+s[i+1:]
+            return s
+            
+        return skip(S) == skip(T)
+                    
+                        
+class Solution(object):
+    def backspaceCompare(self, S, T):
+        """
+        :type S: str
+        :type T: str
+        :rtype: bool
+        """
         # 从后往前
         i, j = len(S)-1, len(T)-1
         skipS, skipT = 0, 0 

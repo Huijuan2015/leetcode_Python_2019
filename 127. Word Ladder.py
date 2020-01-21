@@ -30,18 +30,35 @@ class Solution(object):
         return 0
 
 
-def ladderLength(beginWord, endWord, wordList):
-    queue = [(beginWord, 1)]
-    visited = set()
-    
-    while queue:
-        word, dist = queue.pop(0)
-        if word == endWord:
-            return dist
-        for i in range(len(word)):
-            for j in 'abcdefghijklmnopqrstuvwxyz':
-                tmp = word[:i] + j + word[i+1:]
-                if tmp not in visited and tmp in wordList:
-                    queue.append((tmp, dist+1))
-                    visited.add(tmp)
-    return 0
+class Solution(object):
+    def ladderLength(self, beginWord, endWord, wordList):
+        """
+        :type beginWord: str
+        :type endWord: str
+        :type wordList: List[str]
+        :rtype: int
+        """
+        
+        q = collections.deque()
+        q.append((beginWord, 1))
+        visited = set()
+        wordList = set(wordList)
+        while q:
+            word, dist = q.popleft()
+            if word == endWord:
+                return dist
+            for i in range(len(word)):
+                for ch in "abcdefghijklmnopqrstuvwxyz":
+                    newWord = word[:i]+ch+word[i+1:]
+                    if newWord in wordList and newWord not in visited:
+                        q.append((newWord, dist+1))
+                        visited.add(newWord)
+        return 0
+
+        
+            
+        
+        
+                
+            
+        

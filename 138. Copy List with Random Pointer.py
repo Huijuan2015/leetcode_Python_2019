@@ -16,7 +16,7 @@ class Solution(object):
         from collections import defaultdict
         mp = defaultdict(lambda:Node(0, None, None))
         curr = head
-        mp[None] = None  !!dict 默认没有None key
+    ->mp[None] = None  !!dict 默认没有None key
         while curr:
             mp[curr] = Node(curr.val, None, None)
             curr = curr.next

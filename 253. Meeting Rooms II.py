@@ -22,12 +22,13 @@ class Solution(object):
         rooms, available = 0, 0
         while s < len(starts):
             if starts[s] < ends[e]:
+                # need a room
                 if available == 0:
                     rooms += 1
                 else:
                     available -= 1
                 s += 1
-            else:
+            else: # release a room
                 available += 1
                 e += 1
         return rooms
