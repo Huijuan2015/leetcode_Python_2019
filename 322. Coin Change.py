@@ -1,3 +1,21 @@
+和coin 2 统一：
+class Solution(object):
+    def coinChange(self, coins, amount):
+        """
+        :type coins: List[int]
+        :type amount: int
+        :rtype: int
+        """
+        dp = [float('inf') for _ in range(amount+1)]
+        dp[0] = 0
+        for coin in coins:
+            for i in range(coin, amount+1): # amount i => dp[i]
+                dp[i] = min(dp[i-coin]+1, dp[i])
+        # print dp
+        return dp[amount] if dp[amount] != float('inf') else -1
+        
+
+
 class Solution(object):
     def coinChange(self, coins, amount):
         """
