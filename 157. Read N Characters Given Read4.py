@@ -16,20 +16,21 @@ class Solution(object):
     def read(self, buf, n):
         """
         :type buf: Destination buffer (List[str])
-        :type n: Number of characters to read (int)
+        :type n: Number of charsacters to read (int)
         :rtype: The number of actual characters read (int)
         """
-        # read4(buf) = 4
-        i = n//4+1 if n%4 != 0 else n//4 
-        j = 0
-        while i > 0:
+        i = n//4+1 if n%4 > 0 else n//4 # string 读几轮
+        j = 0 #actual characters read. also the next idx of string
+        
+        while i > 0: # 一轮读4个
             buf4 = [None for _ in range(4)]
-            # print buf4
             cnt = read4(buf4)
             cnt = min(n-j, cnt)
-            #n -= cnt       
+            # copy:
             for ch in buf4[:cnt]:
-                buf[j]= ch
+                buf[j] = ch
                 j += 1
             i -= 1
         return j
+            
+            
