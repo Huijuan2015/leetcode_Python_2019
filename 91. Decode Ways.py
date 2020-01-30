@@ -4,6 +4,24 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
+        # dp[i]: 到i可以组成多少种
+        n = len(s)
+        dp = [0 for _ in range(n+1)]
+        dp[0] = 1 #初始是1个数字不为0，有1种方法
+        for i in range(1, n+1):
+            if int(s[i-1]) != 0:
+                dp[i] += dp[i-1]
+            if i-2 >= 0 and (int(s[i-2]) == 1 or (int(s[i-2]) == 2 and int(s[i-1]) < 7)):
+                dp[i] += dp[i-2]
+        return dp[n]
+                
+
+class Solution(object):
+    def numDecodings(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
         if not s:
             return 0
         n = len(s)

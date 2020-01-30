@@ -4,6 +4,26 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
+        i, j = 0, 0
+        curr = set()
+        res = 0
+        while j < len(s):
+            if s[j] in curr:
+                while s[i] != s[j]:
+                    curr.remove(s[i])
+                    i+=1
+                i+=1
+            curr.add(s[j])
+            res = max(res, j-i+1)
+            j += 1
+        return res
+
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
         visited = set()
         #left and right pointers
         #扩展right: not in visited, 记录curr length
