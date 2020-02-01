@@ -5,6 +5,31 @@ class Solution(object):
         :type wordDict: List[str]
         :rtype: bool
         """
+        wordDict = set(wordDict)
+        #dp: 每个字母是否可以作为单词的终结
+        # a set : 当前字母之前所有可以作为终结的字母坐标
+        # 每次遍历这个set，看之后所组成的新词是都在dict里
+        n = len(s)
+        dp = [False for _ in range(n)]
+        curr = set()
+        curr.add(-1)
+        for i in range(n): 
+            for j in curr:
+                newWord = s[j+1:i+1]
+                if (j == -1 or dp[j])and newWord in wordDict:
+                    dp[i] = True
+                    curr.add(i)
+                    break 
+        return dp[n-1]
+
+
+class Solution(object):
+    def wordBreak(self, s, wordDict):
+        """
+        :type s: str
+        :type wordDict: List[str]
+        :rtype: bool
+        """
         if not s or not wordDict:
             return False
         n = len(s)

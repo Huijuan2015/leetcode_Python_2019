@@ -19,7 +19,7 @@ class NumMatrix(object):
                 if i-1>=0 and j-1>= 0:
                     self.squareSum[i][j] -= self.squareSum[i-1][j-1]
         
-
+注意col1 row1的减一
     def sumRegion(self, row1, col1, row2, col2):
         """
         :type row1: int

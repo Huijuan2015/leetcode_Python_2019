@@ -26,3 +26,30 @@ class Solution(object):
                 
         return False
         
+
+class Solution(object):
+    def checkSubarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        sum = [0 for _ in range(len(nums))]
+        remainMap = {}
+        remainMap[0] = -1   加入0很重要
+        for i in range(len(nums)):
+            sum[i] += nums[i]
+            if i-1 >= 0:
+                sum[i] += sum[i-1]
+            remain = sum[i]
+            if k != 0:
+                remain = sum[i] % k
+            if remain in remainMap:
+                if i - remainMap[remain] > 1:
+                    return True
+            else:
+                remainMap[remain] = i
+        print sum, remainMap
+        return False
+            
+            
