@@ -28,7 +28,7 @@ class Solution(object):
                     self.res.append(path)
             return
         if s[idx] not in ['(', ')']:
-            self.findPath(open, close, removeCnt, s, idx+1, path+s[idx])
+            self.findPath(open, close, removeCnt, s, idx+1, path+s[idx])   注意这个时候要return，与下面条件的关系， 不return就会继续向下跑
         else:
             # remove
             self.findPath(open, close, removeCnt+1, s, idx+1, path)

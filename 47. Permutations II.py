@@ -4,6 +4,32 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
+        if not nums:
+            return 
+        nums.sort()
+        visited = set() #放 index
+        self.res = []
+        self.findPath(nums, visited, [])
+        return self.res
+    
+    def findPath(self, nums, visited, path):
+        if len(path) == len(nums):
+            self.res.append(path)
+            return
+        for i, num in enumerate(nums):
+            if i-1 >= 0 and nums[i] == nums[i-1] and i-1 not in visited:
+                continue
+            if i not in visited:
+                visited.add(i)
+                self.findPath(nums, visited, path+[num])
+                visited.remove(i)
+
+class Solution(object):
+    def permuteUnique(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
         nums.sort()
         visited = [False] * len(nums)
         self.res = []
