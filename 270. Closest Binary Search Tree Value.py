@@ -12,6 +12,36 @@ class Solution(object):
         :type target: float
         :rtype: int
         """
+        self.res = root.val
+        self.helper(root, target)
+        return self.res
+    
+    def helper(self, root, target):
+        
+        if not root:
+            return
+        if abs(root.val-target) < abs(self.res-target):
+            self.res = root.val
+        if target > root.val:
+            self.helper(root.right, target)
+        else:
+            self.helper(root.left, target)
+            
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def closestValue(self, root, target):
+        """
+        :type root: TreeNode
+        :type target: float
+        :rtype: int
+        """
         if not root:
             return
         q = collections.deque()

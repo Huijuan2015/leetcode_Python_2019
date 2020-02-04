@@ -13,6 +13,67 @@ class Solution(object):
         :type k: int
         :rtype: List[int]
         """
+        smallers, largers = [], []
+        # smallers: 比target小的数， ----> 从小到大
+        # largers: 比target大的数，  <---- 从小到大  ----> 从大到小
+        res = []
+        # put nodes into these 2 stks
+        curr = root
+        while curr:
+            if curr.val < target:
+                smallers.append(curr)
+                curr = curr.right
+            else:
+                largers.append(curr)
+                curr = curr.left
+                
+        # use inOrder to get next node
+        def getSmaller(stk): 
+            # push curr left branch to stack
+            #找比当前node最大的最小值->左孩子的最右边
+            s = stk.pop()
+            curr = s.left
+            while curr:
+                stk.append(curr)
+                curr = curr.right
+            return s
+        
+        def getLarger(stk):
+            # push curr right branch to stack
+            #找比当前node最小的最大值->右孩子的最左边
+            l = stk.pop()
+            curr = l.right
+            while curr:
+                stk.append(curr)
+                curr = curr.left
+            return l
+        
+        while k:
+            # s = smallers[-1] if smallers else None
+            # l = largers[-1] if largers else None
+            if smallers and (not largers or (largers and target - smallers[-1].val < largers[-1].val-target)): # use smaller
+                res.append(getSmaller(smallers).val)
+            else:
+                res.append(getLarger(largers).val)
+            k -= 1
+        return res
+            
+        
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def closestKValues(self, root, target, k):
+        """
+        :type root: TreeNode
+        :type target: float
+        :type k: int
+        :rtype: List[int]
+        """
         ans = []
         # similar to 1, n space n
         def helper(root, target):
@@ -56,7 +117,7 @@ class Solution:
         self.closestHelper(root.right)
 
 
-2 stack, K + Ologn?
+O(log(n) + k) 
 # Definition for a binary tree node.
 # class TreeNode(object):
 #     def __init__(self, x):
@@ -83,7 +144,6 @@ class Solution(object):
                 root = root.right
         # print smallers, largers 
         for _ in range(k):
-            print target - smallers[-1].val, largers[-1].val - target
             if smallers and (not largers or largers and target - smallers[-1].val <= largers[-1].val - target):
                 res.append(self._predecessor(smallers))
             else:
