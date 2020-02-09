@@ -5,6 +5,36 @@ class Solution(object):
         :type t: str
         :rtype: str
         """
+        i, j  = 0, 0
+        minLen, res = float('inf'), ""
+        mp = collections.Counter(t)
+        cnt = len(t)
+        while j < len(s) or cnt == 0:
+            if cnt == 0:
+                # update res
+                if minLen > j-i:
+                    res = s[i:j]
+                    minLen = j-i
+                #move i
+                if mp[s[i]] >= 0:
+                    cnt += 1
+                mp[s[i]] += 1
+                i += 1
+            else:
+                if mp[s[j]] >= 1:
+                    cnt -= 1
+                mp[s[j]] -= 1
+                j += 1
+        return res
+
+
+class Solution(object):
+    def minWindow(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: str
+        """
         #left right cnt-- minlen
         #扩展right： mp > 0: right++, mp ++, cnt --
         #确定解： cnt = 0
