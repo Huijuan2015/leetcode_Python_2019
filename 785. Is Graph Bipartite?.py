@@ -4,6 +4,29 @@ class Solution(object):
         :type graph: List[List[int]]
         :rtype: bool
         """
+        colors = {i:-1 for i in range(len(graph))}
+        for i in range(len(graph)):
+            if colors[i] == -1 and not self.isValid(graph, colors, 0, i):
+                return False
+        return True
+    def isValid(self, graph, colors, color, node):
+        #欲染色， 先判断是否被染过
+        if colors[node] != -1:
+            return colors[node] == color
+        colors[node] = color
+        for n in graph[node]:
+            # 欲给两端染成与node不同的颜色
+            if not self.isValid(graph, colors, 1-color, n):
+                return False
+        return True
+
+
+class Solution(object):
+    def isBipartite(self, graph):
+        """
+        :type graph: List[List[int]]
+        :rtype: bool
+        """
 
         # (node, 1/0)
         # -1：未被染色， 需要将node及其children染成1/0间隔色

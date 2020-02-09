@@ -11,6 +11,33 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[List[int]]
         """
+        self.res = []
+        self.depth(root)
+        return self.res
+    def depth(self, root): # return depth from left to root
+        if not root:
+            return 0
+        l = self.depth(root.left)
+        r = self.depth(root.right)
+        depth = max(l, r) +1
+        if len(self.res) < depth:
+            self.res.append([])
+        self.res[depth-1].append(root.val)
+        return depth
+
+            # Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def findLeaves(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
         with dict
         def getLevel(root, dict):
             if not root:

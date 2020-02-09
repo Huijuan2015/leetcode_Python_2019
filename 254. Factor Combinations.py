@@ -1,3 +1,24 @@
+class Solution(object):
+    def getFactors(self, n):
+        """
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        if n < 2:
+            return []
+        i = 2
+        res = []
+        while i*i <= n:
+            if n%i==0:
+                res.append([i, n/i])
+                sub = self.getFactors(n/i)
+                for r in sub:
+                    if r[0] >= i:
+                        res.append([i]+r)
+            i += 1
+        return res
+
+
 import math
 class Solution:
     
