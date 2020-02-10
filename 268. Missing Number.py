@@ -10,3 +10,9 @@ class Solution(object):
             missing ^= i^n
             print missing
         return missing
+
+
+        missing = len(nums)
+        for i in range(len(nums)):
+            missing ^= (nums[i]^i)
+        return missing
