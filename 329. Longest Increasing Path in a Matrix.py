@@ -4,6 +4,35 @@ class Solution(object):
         :type matrix: List[List[int]]
         :rtype: int
         """
+        if not matrix or not len(matrix[0]):
+            return 0
+        m, n = len(matrix), len(matrix[0])
+        res = 0
+        visited = [[0 for _ in range(n)] for _ in range(m)]
+        for i in range(m):
+            for j in range(n):
+                res = max(res, self.helper(matrix, i, j, visited))
+        return res
+        
+    def helper(self, matrix, i, j, visited):#return min len of point [i][j]
+        if visited[i][j] != 0:
+            return visited[i][j]
+        
+        visited[i][j] = 1
+        for dir in [[1,0], [-1,0],[0,1],[0,-1]]:
+            x, y = i+dir[0], j+dir[1]
+            if x < 0 or y < 0 or x >= len(matrix) or y >= len(matrix[0]) or matrix[x][y] <= matrix[i][j]:
+                continue
+            visited[i][j] = max(visited[i][j], self.helper(matrix, x, y, visited)+1) 别忘记＋1
+        return visited[i][j]
+        
+
+class Solution(object):
+    def longestIncreasingPath(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: int
+        """
         if not matrix or not matrix[0]:
             return 0
         m, n = len(matrix), len(matrix[0])

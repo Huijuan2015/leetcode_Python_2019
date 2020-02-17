@@ -15,7 +15,7 @@ class Solution(object):
             return
         start = 0
         end = len(nums) - 1
-        mid = self.partition(nums, start, end)
+        mid = self.partition(nums, start, end) #mid index确定
         key = len(nums) - k
         while mid != key:
             if mid < key:
@@ -24,7 +24,7 @@ class Solution(object):
                 mid = self.partition(nums,start, mid-1)
         return nums[mid]
     
-    def partition(self, nums, start, end):
+    def partition(self, nums, start, end): #返回 
         pivot = nums[start]
         while start < end:
             while start < end and nums[end] >= pivot:

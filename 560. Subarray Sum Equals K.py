@@ -5,6 +5,25 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
+        subSum = collections.defaultdict(int)
+        curr = 0
+        res = 0
+        subSum[0] = 1
+        for i in range(len(nums)):
+            curr += nums[i]
+            if subSum[curr-k]:
+                res += subSum[curr-k]
+            subSum[curr] += 1
+        # print subSum
+        return res
+
+class Solution(object):
+    def subarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
         前缀和相减
         import collections
         mp = collections.defaultdict(int) #sum:same sum count

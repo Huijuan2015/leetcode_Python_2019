@@ -1,3 +1,41 @@
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+"""
+class Solution(object):
+    def treeToDoublyList(self, root):
+        """
+        :type root: Node
+        :rtype: Node
+        """
+        if root:
+            head, tail = self.helper(root)
+            return head
+        return None
+    
+    def helper(self, root):
+        """Idea: Construct a DLL for each subtree, then return the head and tail"""
+        head, tail = root, root
+        if root.left:
+            lh, lt = self.helper(root.left)
+            lt.right = root
+            root.left = lt
+            head = lh
+        if root.right:
+            rh, rt = self.helper(root.right)
+            root.right = rh
+            rh.left = root
+            tail = rt
+        head.left = tail
+        tail.right = head
+        return (head, tail)
+
+
+
 要用定义的node, right-> next, left: prev
 inorder
 """

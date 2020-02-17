@@ -4,6 +4,32 @@ class Solution(object):
         :type intervals: List[List[int]]
         :rtype: int
         """
+        starts, ends = [], []
+        for interval in intervals:
+            starts.append(interval[0])
+            ends.append(interval[1])
+        starts.sort()
+        ends.sort()
+        available = 0
+        i, j, cnt = 0, 0, 0
+        while i < len(starts):
+            if starts[i] < ends[j]:
+                if available > 0:
+                    available-=1
+                else:
+                    cnt += 1
+                i+=1
+            else:
+                available += 1
+                j+=1
+        return cnt
+
+class Solution(object):
+    def minMeetingRooms(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: int
+        """
         #has interval: a new room needed
         # Whenever you want to start a meeting, 
  # you go and check if any empty room available (available > 0) and
