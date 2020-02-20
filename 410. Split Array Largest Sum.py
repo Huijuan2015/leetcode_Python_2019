@@ -6,6 +6,8 @@ class Solution(object):
         :rtype: int
         """
         dp[i][j]: 0~i 被分为j份时的最小的最大值
+        0~i 分成j份
+        最小的，0~k, k~i 的较大值   dp[k][j-1] 0~k 分了j-1份时的最大值
         n = len(nums)
         dp = [[float('inf') for _ in range(m+1)] for _ in range(n+1)]
         s = [0 for _ in range(n+1)]
