@@ -3,6 +3,8 @@ the length of the combination sum needs to be restricted, or the search will not
 Map<Integer,Map<Integer,Integer>> targetToLengthToCount
 helper(int[] nums, int len, int target, int MaxLen)"
 
+Time complexity is O(N^target) where N is a length of candidates array.
+Space complexity is O(target)
 
 class Solution(object):
     def combinationSum(self, candidates, target):
