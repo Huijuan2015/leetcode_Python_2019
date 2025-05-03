@@ -24,3 +24,28 @@ class Solution(object):
                 return False
         return True if not stk else False
                     
+
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        if not s or len(s) <= 1:
+            return False
+        stk = []
+        i = 0
+
+        while i < len(s):
+            if s[i] in "({[":
+                stk.append(s[i])
+            elif s[i] in ")}]":
+                if not stk:
+                    return False
+                else:
+                    top = stk.pop()
+                    if (s[i] == ')' and top != '(') or (s[i] == '}' and top != '{') or (s[i] == ']' and top != '['):
+                        return False
+            i += 1
+        return True if not stk else False
+                
