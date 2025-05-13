@@ -13,7 +13,7 @@ class Solution(object):
         curr = head
         while curr:
             tmp = curr.next
-            curr.next = dummy.next
+            curr.next = dummy.next #
             dummy.next = curr
             curr = tmp
         return dummy.next
