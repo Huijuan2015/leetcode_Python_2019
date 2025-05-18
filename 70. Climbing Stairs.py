@@ -48,3 +48,18 @@ class Solution(object):s
             return self.d[n]
         self.d[n] = self.climbStairs(n-1) + self.climbStairs(n-2)
         return self.d[n]
+
+
+class Solution(object):
+    def climbStairs(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n <= 2:
+            return n
+        res = [_ for _ in range(n+1)]
+        res[:3] = 0, 1, 2
+        for i in range(3, n+1):
+            res[i] = res[i-1] + res[i-2]
+        return res[n]

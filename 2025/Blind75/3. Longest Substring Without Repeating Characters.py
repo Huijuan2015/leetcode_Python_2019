@@ -6,6 +6,35 @@ class Solution(object):
         """
         if not s:
             return 0
+        if len(s) < 2:
+            return 1
+        left, right = 0, 1
+        currSet = set()
+        currSet.add(s[left])
+        res = 1
+
+        while right < len(s):
+            if s[right] not in currSet:
+                currSet.add(s[right])    
+            else:
+                while s[left] != s[right]:
+                    currSet.remove(s[left])
+                    left += 1
+                left += 1
+            right += 1
+            res = max(res, (right-left))
+        return res   
+
+
+
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        if not s:
+            return 0
         left = 0
         charSet = set()
         res = 0

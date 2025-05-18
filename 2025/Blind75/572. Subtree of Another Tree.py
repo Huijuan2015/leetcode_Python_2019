@@ -15,6 +15,7 @@ class Solution(object):
             return True
         if not root:
             return False
+        # 递归调用 isSubtree()，而不是 isSameTree()。
         return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
     
     def isSameTree(self, root1, root2):

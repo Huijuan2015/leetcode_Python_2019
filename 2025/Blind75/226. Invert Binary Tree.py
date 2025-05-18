@@ -17,3 +17,4 @@ class Solution(object):
         root.left, root.right = root.right, root.left
         return root
         
+        递归 从最小单位向上看

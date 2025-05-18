@@ -4,6 +4,42 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
+        if not nums or len(nums) < 3:
+            return []
+        res = []
+        nums.sort() # 先排序
+        for i in range(len(nums)-2):
+            # 跳过重复的第一数
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
+            left, right = i+1, len(nums)-1
+            while left < right:
+                total = nums[i] + nums[left] + nums[right]
+                if total < 0:
+                    left += 1
+                elif total > 0:
+                    right -=1
+                else:
+                    res.append([nums[i], nums[left], nums[right]])
+                    # 跳过重复的第二数和第三数
+                    while left < right and nums[left] == nums[left+1]:
+                        left += 1
+                    while left < right and nums[right] == nums[right-1]:
+                        right -= 1
+                    left += 1
+                    right -= 1
+        return res
+
+
+
+
+
+class Solution(object):
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
         # need better solution
         nums.sort()
         res = []
@@ -26,6 +62,7 @@ class Solution(object):
                     end -= 1
                 if second + third == target:
                     res.append([first, second, third])
+
                     while start < end and nums[start] == second:
                         start += 1
                     while start < end and nums[end] == third:
