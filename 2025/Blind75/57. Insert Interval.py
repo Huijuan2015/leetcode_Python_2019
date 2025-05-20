@@ -1,3 +1,26 @@
+和#56解法一致
+class Solution(object):
+    def insert(self, intervals, newInterval):
+        """
+        :type intervals: List[List[int]]
+        :type newInterval: List[int]
+        :rtype: List[List[int]]
+        """
+        if not intervals and not newInterval:
+            return intervals
+
+        intervals.append(newInterval)
+
+        intervals.sort()
+        res = [intervals[0]]
+        for interval in intervals[1:]:
+            last = res[-1]
+            if interval[0] <= last[1]:
+                res[-1] = [min(last[0], interval[0]), max(last[1], interval[1])]
+            else:
+                res.append(interval)
+        return res
+
 class Solution(object):
     def insert(self, intervals, newInterval):
         """

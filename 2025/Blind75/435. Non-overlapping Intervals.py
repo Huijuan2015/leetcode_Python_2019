@@ -4,6 +4,33 @@ class Solution(object):
         :type intervals: List[List[int]]
         :rtype: int
         """
+        if not intervals or len(intervals) < 2:
+            return 0
+        res = 0
+        intervals.sort(key = lambda x: x[1])
+        # print intervals
+    
+    # 1.    按照 区间的结束时间从小到大排序。(贪心算法的核心策略)
+    # 2.    遍历每个区间，用一个变量 end 记录上一个被保留的区间的结束时间。
+    # 3.    如果当前区间的开始时间 < end，说明和上一个区间重叠了，必须移除一个，计数器 +1。
+    # 4.    否则，更新 end = 当前区间的结束时间。
+        end = float('-inf')
+        for interval in intervals:
+            if interval[0] < end:
+                res += 1
+            else:
+                end = interval[1]
+        return res
+         
+
+
+
+class Solution(object):
+    def eraseOverlapIntervals(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: int
+        """
         # solution 1
         # （贪心策略）如果发生重叠，就移除结束时间较晚的区间，
         # 因为在按起始时间升序排列的数组中，结束时间较晚的区间更容易与后续区间产生更多重叠
