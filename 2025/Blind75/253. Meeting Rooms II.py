@@ -1,3 +1,23 @@
+最小堆
+class Solution(object):
+    def minMeetingRooms(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: int
+        """
+        if not intervals:
+            return 0
+        intervals.sort()
+        heap = [intervals[0][1]] #初始化一个最小堆，放第一个会议的结束时间
+        for i in range(1, len(intervals)):
+            start, end = intervals[i]
+
+            if start >= heap[0]:
+                heapq.heappop(heap)  # 会议结束，腾出房间
+            
+            heapq.heappush(heap, end) # 放入当前会议的结束时间
+        return len(heap)
+     
 class Solution(object):
     def minMeetingRooms(self, intervals):
         """
