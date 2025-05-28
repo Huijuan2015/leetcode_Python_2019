@@ -26,3 +26,7 @@ class Solution(object):
             ret.append(currNodes)
             level = nextLevel
         return ret
+
+
+        如果用queue：
+        for _ in range(len(queue)):  # 当前层的所有节点
