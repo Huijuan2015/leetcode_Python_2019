@@ -15,7 +15,7 @@ class Solution(object):
 
         # 第二步：使用最小堆（heap），大小为 k
         # 堆中存储的是 (频率, 元素) 这样的元组
-        heap = []
+        heap = [] #注意heap定义
 
         for num, freq in freq_map.items():
             heapq.heappush(heap, (freq, num))  # 把 (频率, 元素) 放进堆
