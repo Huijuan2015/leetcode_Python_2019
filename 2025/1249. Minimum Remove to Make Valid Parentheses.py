@@ -4,6 +4,7 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
+        # 要转！！！
         s = list(s) # 将字符串转为列表，方便修改
         stk = []
         for i in range(len(s)):
@@ -16,4 +17,4 @@ class Solution(object):
                     s[i] = ''
         while stk: # 处理多余的左括号 (
             s[stk.pop()] = ''
-        return ''.join(s)
+        return ''.join(s) #链接！！！
